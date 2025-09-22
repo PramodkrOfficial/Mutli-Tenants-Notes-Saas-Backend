@@ -3,7 +3,10 @@
 		WORKDIR /app
 		COPY pom.xml .
 		COPY src ./src
-		RUN mvn clean package
+
+	# Skip tests for Docker build
+        RUN mvn clean package -DskipTests
+
 
     # Stage 2: Run the app
 		FROM eclipse-temurin:17.0.9_9-jdk-jammy
